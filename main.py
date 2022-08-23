@@ -6,26 +6,16 @@ uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 punctuation = '!#$%&*+-=?@^_'
 
 
-
-gp_quantity = int(input('Сколько паролей вам нужно сгенерировать? '))
-gp_len = int(input('Какой длины должен быть пароль? '))
-gp_digits = input('Включать ли в пароль цифры от 0 до 9? (да/нет) ')
-gp_uppercase = input('Включать ли в пароль прописные буквы? (да/нет)  ')
-gp_lowercase = input('Включать ли в пароль строчные буквы? (да/нет) ')
-gp_punctuation = input('Включать ли в пароль символы "!#$%&*+-=?@^_"? (да/нет) ')
-gp_exceptions = input('Исключать ли неоднозначные символы "il1Lo0O"? (да/нет) ')
-
 def is_valid(check):
     if check.lower().strip() == 'да' or check.lower().strip() == 'нет':
         return True
-    else: return False
+    else:
+        return False
 
 
 def gen_posword():
-
     chars = ''
     password_list = []
-
 
     if gp_digits.lower().strip() == 'да':
         chars += digits
@@ -51,6 +41,52 @@ def gen_posword():
     new_password = ''.join(password_list)
 
     return new_password
+
+
+while True:
+    gp_quantity = input('Сколько паролей вам нужно сгенерировать? ')
+    if gp_quantity.isdigit():
+        gp_quantity = int(gp_quantity)
+        break
+    else:
+        print('Введите целое число ')
+while True:
+    gp_len = input('Какой длины должен быть пароль? ')
+    if gp_len.isdigit():
+        gp_len = int(gp_len)
+        break
+    else:
+        print('Введите целое число ')
+while True:
+    gp_digits = input('Включать ли в пароль цифры от 0 до 9? (да/нет) ')
+    if is_valid( gp_digits ):
+        break
+    else:
+        print('Введите да или нет ')
+while True:
+    gp_uppercase = input('Включать ли в пароль прописные буквы? (да/нет)  ')
+    if is_valid(gp_uppercase):
+        break
+    else:
+        print('Введите да или нет ')
+while True:
+    gp_lowercase = input('Включать ли в пароль строчные буквы? (да/нет) ')
+    if is_valid(gp_lowercase):
+        break
+    else:
+        print('Введите да или нет ')
+while True:
+    gp_punctuation = input('Включать ли в пароль символы "!#$%&*+-=?@^_"? (да/нет) ')
+    if is_valid(gp_punctuation):
+        break
+    else:
+        print('Введите да или нет ')
+while True:
+    gp_exceptions = input('Исключать ли неоднозначные символы "il1Lo0O"? (да/нет) ')
+    if is_valid(gp_exceptions):
+        break
+    else:
+        print('Введите да или нет ')
 
 for _ in range(gp_quantity):
     print(gen_posword())
